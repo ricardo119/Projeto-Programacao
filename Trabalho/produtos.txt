@@ -1,1 +1,14 @@
-A1;Kit-Kat;Chocolate;Chocolate com recheio de bolacha;1500,000000;1/1/2024;4,858056;12;44
+A1;Kit-Kat;Chocolate;Chocolate com recheio de bolacha;1500,00;01/12/2023;1,20;10
+A2;Kinder-Bueno;Chocolate;Chocolate com recheio de leite e avelãs;12000,00;01/12/2023;1,50;10
+A3;Kinder-Delice;Chocolate;Chcolate com recheio de cacau e avleãs;177000;01/12/2023;1,50;10
+A4;Mars;Chocolate;Chocolate com recheio de caramelo;229000,00;01/11/2023;1,80;10
+A5;Poker;Chocolate;Bolachas com recheio de chocolate;517000,00;01/12/2023;1,20;10
+A6;Oreo;Chocolate;Bolachas com recheio de chocolate branco;52000,00;01/12/2023;1,30;10
+A7;TUC;Bolacha;Bolachas salgadas;144000,00;01/11/2023;1,20;10
+A8;Bolacha Maria;Bolchas;Bolchas caramelizadas;437600,00;01/09/2023;1,00;10
+B1;Croissant Misto;Pastelaria;Croissant com queijo e fiambre;162400,00;10/06/2023;1,80;3
+B2;Croissant com Fiambre;Pastelaria;Croissant com fiambre;214400,00;09/06/2023;1,50;6
+B3;Croissant com Queijo;Pastelaria;Croissant com queijo;229600,00;09/06/2023;1,50;5
+B4;Croissant com Chocolate;Pastelaria;Croissant com recheio de chocoloate;289600,00;19/06/2023;1,80;2
+B5;Lanche Misto;Pastelaria;Lanche com queijo e fiambre;238000,00;14/06/2023;1,80;5
+B6;Lanche com Chocolate;Pastelaria;Lanche com recheio de chocolate:328000;19/06/2023;1,80;4
