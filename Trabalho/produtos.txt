@@ -1,14 +1,48 @@
-A1;Kit-Kat;Chocolate;Chocolate com recheio de bolacha;1500,00;01/12/2023;1,20;10
-A2;Kinder-Bueno;Chocolate;Chocolate com recheio de leite e avelÃ£s;12000,00;01/12/2023;1,50;10
-A3;Kinder-Delice;Chocolate;Chcolate com recheio de cacau e avleÃ£s;177000;01/12/2023;1,50;10
+A1;Kit-Kat;Chocolate;Chocolate com recheio de bolacha;246000,00;01/01/2024;1,50;10
+A2;Kinder-Bueno;Chocolate;Chocolate com recheio de leite e avelãs;12000,00;01/12/2023;1,50;10
+A3;Kinder-Delice;Chocolate;Chocolate com recheio de cacau e avelãs;177000,00;01/12/2023;1,50;10
 A4;Mars;Chocolate;Chocolate com recheio de caramelo;229000,00;01/11/2023;1,80;10
-A5;Poker;Chocolate;Bolachas com recheio de chocolate;517000,00;01/12/2023;1,20;10
-A6;Oreo;Chocolate;Bolachas com recheio de chocolate branco;52000,00;01/12/2023;1,30;10
-A7;TUC;Bolacha;Bolachas salgadas;144000,00;01/11/2023;1,20;10
-A8;Bolacha Maria;Bolchas;Bolchas caramelizadas;437600,00;01/09/2023;1,00;10
-B1;Croissant Misto;Pastelaria;Croissant com queijo e fiambre;162400,00;10/06/2023;1,80;3
-B2;Croissant com Fiambre;Pastelaria;Croissant com fiambre;214400,00;09/06/2023;1,50;6
-B3;Croissant com Queijo;Pastelaria;Croissant com queijo;229600,00;09/06/2023;1,50;5
-B4;Croissant com Chocolate;Pastelaria;Croissant com recheio de chocoloate;289600,00;19/06/2023;1,80;2
-B5;Lanche Misto;Pastelaria;Lanche com queijo e fiambre;238000,00;14/06/2023;1,80;5
-B6;Lanche com Chocolate;Pastelaria;Lanche com recheio de chocolate:328000;19/06/2023;1,80;4
+A5;Poker;Bolacha;Bolachas com recheio de chocolate;517000,00;01/12/2023;1,20;10
+A6;Oreo;Bolacha;Bolachas com recheio de chocolate branco;52000,00;01/12/2023;1,30;10
+A7;TUC;Bolachas;Bolachas salgadas;14000,00;01/11/2023;1,20;10
+A8;Bolacha Maria;Bolacha;Bolachas caramelizadas;47600,00;01/09/2023;1,00;10
+B1;Croissant Misto;Pastelaria;Croissant com queijo e fiambre;162400,00;10/06/2023;1,80;0
+B2;Croissant com Fiambre;Pastelaria;Croissant com fiambre perna extra;214400,00;09/06/2023;1,50;10
+B3;Croissant com Queijo;Pastelaria;Croissant com queijo Limianos;229600,00;09/06/2023;1,50;7
+B4;Croissant com Chocolate;Pastelaria;Croissant com recheio e pepitas de chocolate;289600,00;19/06/2023;1,80;5
+B5;Lanche Misto;Pastelaria;Lanche com queijo e fiambre;23800,00;01/06/2023;1,80;5
+B6;Lanche com Chocolate;Pastelaria;Lanche com recheio e pepitas de chocolate;328000,00;19/06/2023;1,80;5
+B7;Bolo de Arroz;Pastelaria;Bolo com cobertura de a‡ucar;275,00;18/09/2023;1,50;10
+B8;Torta;Pastelaria;Torta com recheio de creme;314000,00;12/07/2023;2,00;9
+C1;Donut;Pastelaria;Donut com cobertura de a‡ucar;150000,00;05/07/2023;2,00;6
+C2;Donut Chocolate;Pastelaria;Donut com cobertura de chocolate;265800,00;15/08/2023;2,50;7
+C3;Pão Misto;Padaria;Pão Bijou com queijo e fiambre;150000,00;18/06/2023;2,00;8
+C4;Pão com Queijo;Padaria;Pão Bijou com queijo Limianos;132000,00;18/06/2023;1,80;10
+C5;Pão com Fiambre;Padaria;Pão com fiambre perna extra;156000,00;17/06/2023;1,80;10
+C6;Baguete de Atum;Padaria;Baguete com alface, tomate e atum;248000,00;12/06/2023;3,00;10
+C7;Baguete de Frango;Padaria;Baguete com alface, tomate e tiras de frango;185900,00;12/06/2023;3,00;9
+C8;Baguete Vegetariana;Pastelatia;Baguete com alface, tomate, milho, azeitonas e cogumelos;123400,00;16/06/2023;3,50;6
+D1;Ruffles Clássicas;Batata-Frita;Ruffles clássicas;390000,00;06/01/2024;2,00;7
+D2;Ruffles Presunto;Batata-Frita;Ruffles com sabor a presunto;420000,00;06/01/2024;2,20;9
+D3;Lays Clássicas;Batata-Frita;Lays clássicas;260000,00;03/02/2024;2,00;5
+D4;Lays Ketchup;Batata-Frita;Lays com sabor a presunto;306800,00;03/02/2024;2,20;9
+D5;Twix;Chocolate;Chocolate com recheio de caramelo;494000,00;01/01/2024;2,00;8
+D6;M&M's;Chocolate;Chocolate com recheio de avelÆ;246000,00;01/01/2024;2,20;8
+D7;Haribo;Gomas;Gomas em forma de urso com v rios sabores;342000,00;01/01/2024;1,80;8
+D8;Fini;Gomas;Gomas de v rias formas com v rios sabores;458000,00;01/01/2024;1,50;9
+E1;Água;Bebida;Água do Gerês com ph neutro;0,00;01/04/2024;1,00;8
+E2;Água;Bebida;Água do Gerês com ph neutro;0,00;01/04/2024;1,00;2
+E3;Água;Bebida;Água do Gerês com ph neutro;0,00;01/04/2024;1,00;0
+E4;Água;Bebida;Água do Gerês com ph neutro;0,00;01/04/2024;1,00;1
+E5;Compal Tutii-Frutii;Bebida;Compal com frutos tropicais;41000,00;16/07/2023;1,50;8
+E6;Compal Laranja;Bebida;Sumo de laranja do Algarve;451000,00;16/07/2023;1,50;7
+E7;Sumo de Laranja;Bebida;Sumo de laranja natural;2600,00;06/07/2023;2,50;4
+E8;Sumo de Maçã;Bebida;Sumo de maçã de Alcobaça;1900,00;06/07/2023;2,20;10
+F1;Sumol de Ananás;Bebida com Gás;Sumo de Ananás com gás;108000,00;09/09/2024;2,00;5
+F2;Sumol de Laranja;Bebida com Gás;Sumo de Laranja com gás;98500,00;09/09/2024;2,00;1
+F3;Coca-Cola;Bebida com Gás;Bebida com extrato concentrado de caramelo ;138000,00;30/12/2023;2,00;3
+F4;Coca-Cola Zero;Bebida com Gás;O sabor original da Coca-Cola sem açucares;0,00;30/12/2023;2,00;8
+F5;Pepsi;Bebida com Gás;Bebida com extrato concentrado de café;126000,00;24/12/2023;2,00;10
+F6;Seven-Up;Bebida com Gás;µgua com g s com sabor a limão;92000,00;28/12/2024;2,00;7
+F7;Água das Pedras;Bebida com Gás;Água com gás;32000,00;28/12/2023;1,80;8
+F8;Pleno;Bebida;Chá Verde com sumo de limão;94700,00;27/11/2023;2,00;7

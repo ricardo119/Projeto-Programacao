@@ -9,13 +9,13 @@ typedef struct data{
 }DATA;
 
 typedef struct info{
-	char informacao[100];
+	char informacao[200];
 	float calorias;
 }INFO;
 
 typedef struct produtos{
 	char codigo[3];
-	char nome[20];
+	char nome[30];
 	char tipo_produto[20];
 	INFO info_produto;
 	DATA data_validade;
@@ -23,49 +23,136 @@ typedef struct produtos{
 	int quantidade;
 }PRODUTO;
 
+//////////////////////ELIMINAR PRODUTO///////////////////////////////
+void eliminar_produto(PRODUTO produtos[MAX], int* num_produto){
+	
+	int i;
+	char opcao_admin[3];
+	
+	printf("Qual produto que retirar?: ");
+	scanf("%s",&opcao_admin);
+	getchar();
+	
+	for(i = 0; i < MAX; i++){
+		if (strcmp(opcao_admin,produtos[i].codigo)== 0){
+			strcpy(produtos[i].nome,"");
+			strcpy(produtos[i].tipo_produto,"");
+			strcpy(produtos[i].info_produto.informacao,"");
+			produtos[i].info_produto.calorias = 0.0;
+			produtos[i].data_validade.dia = 0;
+			produtos[i].data_validade.mes = 0;
+			produtos[i].data_validade.ano = 0;
+			produtos[i].price=0.0;
+			produtos[i].quantidade = 0;
+			guardar_produto(produtos, num_produto);
+			main();
+		}
+	} 
+		printf("Não encontrado o produto");		
+}
+
 /////////////////////////ADICIONAR PRODUTO//////////////////////////////
 void adicionar_produto(PRODUTO produtos[MAX], int* num_produto){
 	
+	char opcao;
 	PRODUTO produto;
 	
-	printf("Digita o código do produto que quer adicionar (Ex.:A0)");
+	if ((*num_produto) >= MAX){
+		printf("Capacidade máxima da máquina atingida!\n");
+		printf("Quer retirar algum produto? (s/n): ");
+		scanf(" %c",&opcao);
+			if (opcao != 's' && opcao != 'S'){
+				return;
+			} else {
+				eliminar_produto(produtos, num_produto);
+			}
+	}else {
+	printf("Digita o código do produto que quer adicionar (Ex.:A0): ");
 	scanf("%[^\n]s",produto.codigo);
 	getchar();
 
-	printf("Digita o nome do produto:");
+	printf("Digita o nome do produto: ");
 	scanf("%[^\n]s",produto.nome);
 	getchar();
 
-	printf("Digita o tipo do produto:");
+	printf("Digita o tipo do produto: ");
 	scanf("%[^\n]s",produto.tipo_produto);
 	getchar();
 	
-	printf("Digita informações do produto:");
+	printf("Digita informações do produto: ");
 	scanf("%[^\n]s",produto.info_produto.informacao);
 	getchar();
 	
-	printf("Digita as calorias do produto:");
+	printf("Digita as calorias do produto: ");
 	scanf("%f",&produto.info_produto.calorias);
 	getchar();
 	
-	printf("Digita a validade do produto (dd/mm/aaaa):");
+	printf("Digita a validade do produto (dd/mm/aaaa): ");
 	scanf("%d/%d/%d",&produto.data_validade.dia,&produto.data_validade.mes,&produto.data_validade.ano);
 	getchar();
 	
-	printf("Digita o preço do produto:");
+	printf("Digita o preço do produto: ");
 	scanf("%f",&produto.price);
 	getchar();
-	printf("Digita a quantidade:");
+	
+	printf("Digita a quantidade: ");
 	scanf("%d",&produto.quantidade);
 
 	produtos[*num_produto]=produto;
 	(*num_produto)++;	
 	
 	guardar_produto(produtos,num_produto);
+	}
+}
+
+//////////////////////EDITAR PRODUTO///////////////////////////////
+void editar_produto(PRODUTO produtos[MAX], int* num_produto){
+	
+	int i;
+	char opcao_admin[3];
+	
+	printf("Qual o produto que editar?: ");
+	scanf("%s",&opcao_admin);
+	getchar();
+	
+	for (i=0; i < MAX; i++ ){
+		if (strcmp(opcao_admin,produtos[i].codigo)==0){
+			printf("Digita o nome do produto: ");
+			scanf("%[^\n]s",produtos[i].nome);
+			getchar();
+
+			printf("Digita o tipo do produto: ");
+			scanf("%[^\n]s",produtos[i].tipo_produto);
+			getchar();
+	
+			printf("Digita informações do produto: ");
+			scanf("%[^\n]s",produtos[i].info_produto.informacao);
+			getchar();
+	
+			printf("Digita as calorias do produto: ");
+			scanf("%f",&produtos[i].info_produto.calorias);
+			getchar();
+	
+			printf("Digita a validade do produto (dd/mm/aaaa): ");
+			scanf("%d/%d/%d",&produtos[i].data_validade.dia,&produtos[i].data_validade.mes,&produtos[i].data_validade.ano);
+			getchar();
+	
+			printf("Digita o preço do produto: ");
+			scanf("%f",&produtos[i].price);
+			getchar();
+	
+			printf("Digita a quantidade: ");
+			scanf("%d",&produtos[i].quantidade);
+			
+			guardar_produto(produtos, num_produto);
+			main();
+		}
+	}
+	printf("Código não encontrado!");
 }
 
 //////////////////////GUARDAR PRODUTO NO FICHEIRO///////////////////////////////
-void guardar_produto(PRODUTO produtos[MAX],int* num_produto){
+void guardar_produto(PRODUTO produtos[MAX], int* num_produto){
 	
 	PRODUTO produto;
 	FILE *txt;
@@ -78,8 +165,8 @@ void guardar_produto(PRODUTO produtos[MAX],int* num_produto){
 		return;
 	}
 		
-	for (i = 0; i < *num_produto; i++){
-	fprintf(txt, "%s;%s;%s;%s;%.2f;%02d/%02d/%02d;%.2f;%d;%d\n", produtos[i].codigo, produtos[i].nome, produtos[i].tipo_produto,
+	for (i = 0; i < MAX; i++){
+	fprintf(txt, "%s;%s;%s;%s;%.2f;%02d/%02d/%04d;%.2f;%d;%d\n", produtos[i].codigo, produtos[i].nome, produtos[i].tipo_produto,
 	produtos[i].info_produto.informacao, produtos[i].info_produto.calorias, produtos[i].data_validade.dia,
 	produtos[i].data_validade.mes,produtos[i].data_validade.ano,produtos[i].price,produtos[i].quantidade);
 	}
@@ -101,7 +188,7 @@ void reeabastecer_maquina(PRODUTO produtos[MAX], int* num_produto){
 		printf("\nInsira o código do produto a reeabastecer:\n");
 		scanf("%s", codigo_admin);
 		
-		for (i = 0; i < *num_produto; i++) {
+		for (i = 0; i < MAX; i++) {
 			if (strcmp(codigo_admin, produtos[i].codigo) == 0) {
 				printf("Insira a quantidade:");
 				scanf("%d", &quantidade_reeabastecida);
@@ -109,8 +196,7 @@ void reeabastecer_maquina(PRODUTO produtos[MAX], int* num_produto){
 				guardar_produto(produtos, num_produto);
 				return; 
 			}
-		}
-		
+		}	
 		printf("Produto não encontrado!\n");
 		printf("Deseja tentar novamente? (s/n): ");
 		char opcao;
@@ -126,8 +212,8 @@ void listar_produtos_admin(PRODUTO produtos[MAX], int* num_produto){
 	int i;
 	
 	printf("\n_____________________________________________________________________________________________________________________");
-	for (i = 0; i< *num_produto; i++){
-		printf("\n%s|%s|%s|%s|%.2f|%d/%d/%d|%.2f|%d",
+	for (i = 0; i< MAX; i++){
+		printf("\n%s;%s;%s;%s;%.2f;%d/%d/%d;%.2f;%d",
 		produtos[i].codigo, produtos[i].nome, produtos[i].tipo_produto, produtos[i].info_produto.informacao, produtos[i].info_produto.calorias, 
 		produtos[i].data_validade.dia,produtos[i].data_validade.mes, produtos[i].data_validade.ano, produtos[i].price, produtos[i].quantidade);
 	}
@@ -137,11 +223,11 @@ void listar_produtos_admin(PRODUTO produtos[MAX], int* num_produto){
 //////////////////////////LISTAR PRODUTOS/////////////////////////////////
 void listar_produtos(PRODUTO produtos[MAX], int* num_produto){
 	
-	int i;
+	int i = 0;
 	
 	printf("\n_____________________________________________________________________________________________________________________");
 	printf("\nCÓDIGO:  |  NOME DO PRODUTO:                   |  TIPO DO PRODUTO:  |  DATA DE VALIDADE:  |  PREÇO:  |  QUANTIDADE:\n");
-	for (i = 0; i < *num_produto; i++){
+	for (i = 0; i < MAX; i++){
 		printf("%-10s  %-36s  %-19s  %02d/%02d/%04d            %.2f       %d\n",
 		produtos[i].codigo, produtos[i].nome, produtos[i].tipo_produto, produtos[i].data_validade.dia,
 		produtos[i].data_validade.mes, produtos[i].data_validade.ano, produtos[i].price, produtos[i].quantidade);
@@ -154,6 +240,7 @@ void listar_validade_produtos(PRODUTO produtos[MAX], int* num_produto){
 	
     int dia_atual, mes_atual, ano_atual, quantidade_removida;
     int i=0;
+    int a=1;
     char opcao[2];
     char codigo_admin[3];
     int produtos_excedidos = 0;
@@ -171,13 +258,15 @@ void listar_validade_produtos(PRODUTO produtos[MAX], int* num_produto){
             produtos_excedidos = 1;
         }
         i++;
-    } while(i!=(*num_produto));
+    } while(i!=MAX);
 
+	do{
+	
     if (produtos_excedidos == 1) {
         printf("\nOs seguintes produtos estão fora de prazo:\n");
         printf("________________________________________________________________________________________________________________________");
         printf("\nCÓDIGO:  |  NOME DO PRODUTO:                   |  DATA DE VALIDADE:  |  QUANTIDADE:\n");
-        for (i = 0; i < *num_produto; i++) {
+        for (i = 0; i < MAX; i++) {
             if (ano_atual > produtos[i].data_validade.ano ||
                 (ano_atual == produtos[i].data_validade.ano && mes_atual > produtos[i].data_validade.mes) ||
                 (ano_atual == produtos[i].data_validade.ano && mes_atual == produtos[i].data_validade.mes && dia_atual >= produtos[i].data_validade.dia)) {
@@ -192,7 +281,7 @@ void listar_validade_produtos(PRODUTO produtos[MAX], int* num_produto){
         scanf("%2s", &codigo_admin);
         getchar();
         
-        for (i = 0; i < *num_produto; i++) {
+        for (i = 0; i < MAX; i++) {
            	if (strcmp(codigo_admin, produtos[i].codigo) == 0) {
            		encontrado=1;
             	if (produtos[i].quantidade==0){
@@ -209,9 +298,19 @@ void listar_validade_produtos(PRODUTO produtos[MAX], int* num_produto){
             	} while (quantidade_removida > produtos[i].quantidade);
             		produtos[i].quantidade -= quantidade_removida;
                 	guardar_produto(produtos, num_produto);
+                	printf("Quer retirar mais produtos? (s/n): ");
+                	char opcao;
+                	scanf(" %c",&opcao);
+                	if (opcao != 's' && opcao != 'S'){
+                		break;
+					} else {
+						a=0;
+					}
         	}
    		} 
 	}
+
+
 	if (encontrado==1){
 		break;
 		}else {
@@ -226,6 +325,8 @@ void listar_validade_produtos(PRODUTO produtos[MAX], int* num_produto){
 		}
 	}	
 	}
+	
+} while(a==0);
 		
     printf("\nNão há produtos fora de prazo. Deseja verificar a validade dos produtos em stock? (Sim(s)/Não(n))\n");
     scanf("%c", opcao);
@@ -239,6 +340,7 @@ void listar_validade_produtos(PRODUTO produtos[MAX], int* num_produto){
 
 ////////////////////GUARDAR COMPRA NO FICHEIRO//////////////////////////////////
 void guardar_compra(PRODUTO produtos[MAX], int* num_produto, float total_dinheiro){
+	
 	FILE *txt, *adm;
 	int i;
 	
@@ -248,8 +350,8 @@ void guardar_compra(PRODUTO produtos[MAX], int* num_produto, float total_dinheir
 		return;
 	}
 
-	for (i=0; i< *num_produto; i++){
-		fprintf(txt, "%s;%s;%s;%s;%f;%d/%d/%d;%f;%d\n", produtos[i].codigo, produtos[i].nome, produtos[i].tipo_produto,
+	for (i=0; i < MAX; i++){
+		fprintf(txt, "%s;%s;%s;%s;%.2f;%02d/%02d/%04d;%.2f;%d\n", produtos[i].codigo, produtos[i].nome, produtos[i].tipo_produto,
 				produtos[i].info_produto.informacao, produtos[i].info_produto.calorias, produtos[i].data_validade.dia,
 				produtos[i].data_validade.mes, produtos[i].data_validade.ano, produtos[i].price, produtos[i].quantidade);
 	}
@@ -275,8 +377,10 @@ void calculo_troco(PRODUTO produtos[MAX], int* num_produto, float preco_utilizad
 
 	if (preco_utilizador == produtos[i].price){
 		printf("\nCompra realizada com sucesso\n");
+		main();
 	} else if (preco_utilizador > produtos[i].price){
 		printf("\nCompra realizada com sucesso\nTroco: %.2f\n", troco);
+		main();
 	} else {
 		while (preco_utilizador < produtos[i].price){
 			float preco;
@@ -286,8 +390,10 @@ void calculo_troco(PRODUTO produtos[MAX], int* num_produto, float preco_utilizad
 			preco_utilizador += preco;
 			if (preco_utilizador == produtos[i].price){
 				printf("\nCompra realizada com sucesso\n");
+				main();
 			} else if (preco_utilizador > produtos[i].price){
 				printf("\nCompra realizada com sucesso\nTroco: %.2f", troco);
+				main();
 			}
 		}
 	}
@@ -300,15 +406,20 @@ void comprar_produto(PRODUTO produtos[MAX], int* num_produto, char* codigo_utili
 	
 	float preco_utilizador;
 	int i;
-	char opcao[2];
+	char opcao;
 			
-	for (i = 0 ; i < *num_produto; i++){
-		if (strcmp(codigo_utilizador,produtos[i].codigo)== 0){
+	for (i = 0; i < MAX; i++){
+		if (strcmp(codigo_utilizador,produtos[i].codigo) == 0){
 			if(produtos[i].quantidade!=0){
 				printf("Produto encontrado! Quer saber mais informações do produto?(s/n): ");
-				scanf(" %c",&opcao);
+				scanf("%c",&opcao);
 				getchar();
-				if (opcao != 'n' && opcao != 'N'){
+				if (opcao != 's' && opcao != 'S'){
+					printf("Insira %.2f para finalizar compra: ",produtos[i].price);
+					scanf("%f",&preco_utilizador);
+					getchar();
+					calculo_troco(produtos, num_produto, preco_utilizador, i, dinheiro_total);
+				} else {
 					printf("Informações de %s:\n", produtos[i].nome);
 					printf("Descrição: %s\n",produtos[i].info_produto.informacao);
 					printf("Calorias: %.2f\n", produtos[i].info_produto.calorias);
@@ -316,34 +427,25 @@ void comprar_produto(PRODUTO produtos[MAX], int* num_produto, char* codigo_utili
 					scanf("%f",&preco_utilizador);
 					getchar();
 					calculo_troco(produtos, num_produto, preco_utilizador, i, dinheiro_total);
-				} else {
-					printf("Insira %.2f para finalizar compra: ",produtos[i].price);
-					scanf("%f",&preco_utilizador);
-					getchar();
-					calculo_troco(produtos, num_produto, preco_utilizador, i, dinheiro_total);
-				}
-			}else{
-				printf("Produto esgotado!\n");
-				printf("Quer comprar outro produto?(s/n): ");
-				scanf(" %c", &opcao);
-				if (opcao == 's' && opcao == 'S')
-				main ();
+					main();
 			}
-		}else {
+		}else{
+			printf("Produto esgotado!\n");
+			break;
+			}
 			printf("Produto não encontrado!\n");
-			printf("Quer comprar outro produto?(s/n): ");
-			scanf(" %c", &opcao);
-			if (opcao == 's' && opcao == 'S'){
-			main ();
-			}
+			main();
 		}
 	}
 }
 
+
 /////////////////////CARREGAR PRODUTOS DO FICHEIRO//////////////////////////////
 void carregar_produtos(PRODUTO produtos[MAX], int* num_produto){
+	
 	FILE *txt;
 	char linha[200];
+
 	
 	txt = fopen("produtos.txt","r");
 	
@@ -354,9 +456,9 @@ void carregar_produtos(PRODUTO produtos[MAX], int* num_produto){
 	
 	while(fgets(linha, sizeof (linha), txt) != NULL){
 		PRODUTO produto;
-		sscanf(linha, "%[^;];%[^;];%[^;];%[^;];%f;%d/%d/%d;%f;%d",
-			produto.codigo, produto.nome, produto.tipo_produto, produto.info_produto.informacao, &produto.info_produto.calorias, 
-			&produto.data_validade.dia,&produto.data_validade.mes,&produto.data_validade.ano, &produto.price, &produto.quantidade);	
+		sscanf(linha, "%[^;];%[^;];%[^;];%[^;];%f;%d/%d/%d;%f;%d\n",
+		produto.codigo, produto.nome, produto.tipo_produto, produto.info_produto.informacao, &produto.info_produto.calorias, 
+		&produto.data_validade.dia,&produto.data_validade.mes,&produto.data_validade.ano, &produto.price, &produto.quantidade);	
 		produtos[*num_produto] = produto;
     	(*num_produto)++;
 	}
@@ -398,7 +500,7 @@ void levantar_dinheiro() {
 /////////////////////CARREGAR DINHEIRO DO FICHEIRO//////////////////////////////	
 float carregar_dinheiro() {
     FILE *adm;
-    char opcao[1];
+    char opcao;
     float dinheiro;
 
     adm = fopen("admin.txt", "r");
@@ -424,7 +526,7 @@ void atualizar_preco_produto(PRODUTO produtos[MAX], int* num_produto) {
     	printf("\nQual o produto que desejas alterar o preco: ");
     	scanf("%s",codigo);
     	getchar();
-    	for (i = 0; i < *num_produto; i++) {
+    	for (i = 0; i < MAX; i++) {
         	if (strcmp(codigo, produtos[i].codigo) == 0) {
             	do {
             		printf("\nQual é o novo preço do produto %s: ", produtos[i].nome);
@@ -451,6 +553,7 @@ void atualizar_preco_produto(PRODUTO produtos[MAX], int* num_produto) {
 
 /////////////////////ATUALIZAR PREÇO DE VÁRIOS PRODUTOS//////////////////////////////	
 void atualizar_preco_todos_produtos(PRODUTO produtos[MAX], int* num_produto){
+	
 	float inflacao;
 	int i;
 	
@@ -464,7 +567,7 @@ void atualizar_preco_todos_produtos(PRODUTO produtos[MAX], int* num_produto){
 	   	}	
 	}while( inflacao < 0 || inflacao > 100);
 	
-	for(i = 0; i < *num_produto; i++){
+	for(i = 0; i < MAX; i++){
 		printf("\n%f  \t  %s",produtos[i].price,produtos[i].nome);
 		produtos[i].price= produtos[i].price + (inflacao/100)*produtos[i].price;
 		
@@ -495,13 +598,15 @@ void admin(PRODUTO produtos[MAX], int* num_produto,float dinheiro_total){
 		printf("\nEscolha a opção:\n");
 		printf("0. Sair\n");
 		printf("1. Adicionar produto\n");
-		printf("2. Listar produtos\n");
-		printf("3. Reeabastecer máquina\n");
-		printf("4. Listar validade dos produtos\n");
-		printf("5. Atualizar preço de um produto\n");
-		printf("6. Atualizar preço de todos os produtos\n");
-		printf("7. Mostrar dinheiro guardado\n");
-		printf("8. Voltar\n");
+		printf("2. Eliminar produto\n");
+		printf("3. Listar produtos\n");
+		printf("4. Editar produto existente\n");
+		printf("5. Reeabastecer máquina\n");
+		printf("6. Listar validade dos produtos\n");
+		printf("7. Atualizar preço de um produto\n");
+		printf("8. Atualizar preço de todos os produtos\n");
+		printf("9. Mostrar dinheiro guardado\n");
+		printf("10. Voltar\n");
 		printf("Opção: ");
 		scanf("%d", &opcao_admin);
 		getchar();
@@ -513,24 +618,30 @@ void admin(PRODUTO produtos[MAX], int* num_produto,float dinheiro_total){
 				adicionar_produto(produtos,num_produto);
 				break;
 			case 2:
-				listar_produtos_admin(produtos,num_produto);
+				eliminar_produto(produtos,num_produto);
 				break;
 			case 3:
-				reeabastecer_maquina(produtos,num_produto);
+				listar_produtos_admin(produtos,num_produto);
 				break;
 			case 4:
-				listar_validade_produtos(produtos,num_produto);
+				editar_produto(produtos,num_produto);
 				break;
 			case 5:
-				atualizar_preco_produto(produtos, num_produto);
+				reeabastecer_maquina(produtos,num_produto);
 				break;
 			case 6:
-				atualizar_preco_todos_produtos(produtos, num_produto);
+				listar_validade_produtos(produtos,num_produto);
 				break;
 			case 7:
-				levantar_dinheiro();
+				atualizar_preco_produto(produtos, num_produto);
 				break;
 			case 8:
+				atualizar_preco_todos_produtos(produtos, num_produto);
+				break;
+			case 9:
+				levantar_dinheiro();
+				break;
+			case 10:
 				return;
 			default:
 				printf("Opção inválida!\n");
